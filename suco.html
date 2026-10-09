@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sự cố & Bảo trì – LabManager</title>
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/suco.css">
+
+<body>
+  <div class="app">
+
+    <!-- Thanh menu bên trái -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo">🖥️</span>
+        <div><b>LabManager</b><small>PRO SYSTEM</small></div>
+      </div>
+      <nav id="menu">
+        <a href="suco.html" class="active"><i>🔧</i>Sự cố & Bảo trì</a>
+        <a href="baocao.html"><i>📈</i>Báo cáo & Thống kê</a>
+      </nav>
+      <div class="me">
+        <span class="avatar">ADMIN</span>
+        <div><b>Quản trị viên</b><small>PhongMáy_IT</small></div>
+      </div>
+    </aside>
+
+    <!-- Nội dung chính -->
+    <main class="content">
+      <header class="header">
+        <div>
+          <h1>Sự cố & Bảo trì phòng máy</h1>
+          <p>Quản lý, tiếp nhận và theo dõi tiến độ khắc phục sự cố máy tính</p>
+        </div>
+        <div class="header-right">
+          <span class="date" id="homNay">--/--/----</span>
+          <button class="btn-dark" onclick="exportData()">📥 Xuất dữ liệu</button>
+        </div>
+      </header>
+
+      <!-- Thẻ tóm tắt nhanh sự cố -->
+      <section class="stats">
+        <div class="stat c-orange">
+          <div class="stat-top"><span class="label">Sự cố chờ xử lý</span><span class="icon">⏳</span></div>
+          <strong id="stat-pending">3</strong>
+          <small>Cần kiểm tra ngay</small>
+        </div>
+        <div class="stat c-blue">
+          <div class="stat-top"><span class="label">Máy đang sửa chữa</span><span class="icon">🛠️</span></div>
+          <strong id="stat-fixing">2</strong>
+          <small>Đang trong quá trình bảo trì</small>
+        </div>
+        <div class="stat c-green">
+          <div class="stat-top"><span class="label">Đã phục hồi (Tháng này)</span><span class="icon">✅</span></div>
+          <strong id="stat-fixed">15</strong>
+          <small>Đã sẵn sàng sử dụng</small>
+        </div>
+        <div class="stat c-red">
+          <div class="stat-top"><span class="label">Ước tính chi phí sửa</span><span class="icon">💸</span></div>
+          <strong>3.500.000 đ</strong>
+          <small class="red">Bao gồm linh kiện thay thế</small>
+        </div>
+      </section>
+
+      <!-- Khung tác vụ Sự cố: Báo cáo mới & Lịch lọc -->
+      <section class="grid-2col">
+        <!-- Form báo cáo sự cố mới -->
+        <div class="box">
+          <h3>📝 Báo cáo sự cố máy tính mới</h3>
+          <form id="incident-form" class="form-grid">
+            <div class="form-group">
+              <label>Phòng máy:</label>
+              <select id="inp-room" required>
+                <option value="">-- Chọn phòng --</option>
+                <option value="Lab 101">Lab 101 (Tầng 1)</option>
+                <option value="Lab 102">Lab 102 (Tầng 1)</option>
+                <option value="Lab 201">Lab 201 (Tầng 2)</option>
+                <option value="Lab 305">Lab 305 (Tầng 3)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Số máy / Tên máy:</label>
+              <input type="text" id="inp-pc" placeholder="Ví dụ: Máy 05, PC-12" required>
+            </div>
+            <div class="form-group">
+              <label>Loại sự cố:</label>
+              <select id="inp-type" required>
+                <option value="Phần cứng">Phần cứng (RAM, Màn hình, Bàn phím...)</option>
+                <option value="Phần mềm">Phần mềm (Lỗi OS, Mất mạng, Lỗi App)</option>
+                <option value="Thiết bị ngoại vi">Thiết bị ngoại vi (Chuột, Tai nghe)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mức độ khẩn cấp:</label>
+              <select id="inp-priority" required>
+                <option value="Bình thường">Bình thường</option>
+                <option value="Trung bình">Trung bình</option>
+                <option value="Khẩn cấp">Khẩn cấp</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label>Mô tả chi tiết lỗi:</label>
+              <textarea id="inp-desc" rows="2"
+                placeholder="Mô tả hiện tượng lỗi (Ví dụ: Máy không bật được nguồn, màn hình xanh...)"
+                required></textarea>
+            </div>
+            <div class="form-group full-width">
+              <button type="submit" class="btn-primary">➕ Gửi báo cáo sự cố</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Bộ lọc lịch & Tìm kiếm -->
+        <div class="box">
+          <h3>📅 Lịch theo dõi & Bộ lọc sự cố</h3>
+          <div class="filter-section">
+            <div class="form-group">
+              <label>Xem lịch sự cố theo ngày:</label>
+              <input type="date" id="filter-date" onchange="filterIncidents()">
+            </div>
+            <div class="form-group">
+              <label>Lọc theo trạng thái:</label>
+              <select id="filter-status" onchange="filterIncidents()">
+                <option value="ALL">-- Tất cả trạng thái --</option>
+                <option value="Chờ xử lý">Chờ xử lý</option>
+                <option value="Đang sửa chữa">Đang sửa chữa</option>
+                <option value="Đã hoàn thành">Đã hoàn thành</option>
+              </select>
+            </div>
+          </div>
+          <div class="calendar-summary">
+            <p>📌 <b>Ghi chú bảo trì định kỳ:</b></p>
+            <ul>
+              <li>Thứ 7 tuần này: Bảo trì hệ thống mạng Lab 201</li>
+              <li>Vệ sinh quạt gió toàn bộ Lab 101 vào ngày 15 hàng tháng</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bảng danh sách tổng hợp máy đang xử lý -->
+      <section class="tables-section">
+        <div class="box">
+          <div class="box-header">
+            <h3>📋 Danh sách tổng hợp tất cả các máy đang xử lý / bảo trì</h3>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã SC</th>
+                  <th>Phòng</th>
+                  <th>Số Máy</th>
+                  <th>Mô tả sự cố</th>
+                  <th>Mức độ</th>
+                  <th>Ngày báo</th>
+                  <th>Trạng thái</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="incident-table-body">
+                <!-- Dữ liệu JS sẽ render vào đây -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/suco.js"></script>
+</body>
+
+</html>

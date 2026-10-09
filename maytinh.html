@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LabManager – Máy tính & thiết bị</title>
+<link rel="stylesheet" href="css/chung.css">
+<link rel="stylesheet" href="css/maytinh.css">
+<style>
+/* Phần riêng của trang Máy tính, giữ nguyên style gốc của quanlyphongmay */
+
+</style>
+</head>
+<body><div class="app">
+<aside class="sidebar"><div class="brand"><span class="logo">🏢</span><div><b>LabManager</b><small>Pro</small></div></div><nav id="menu">
+<a href="tongquan.html"><i>📊</i>Tổng quan</a><a href="#"><i>📅</i>Đặt lịch ca</a><a href="#"><i>🖥️</i>Phòng máy</a><a href="maytinh.html" class="active"><i>💻</i>Máy tính</a><a href="#"><i>🔧</i>Sự cố &amp; bảo trì</a><a href="#"><i>📈</i>Báo cáo</a><a href="#"><i>👥</i>Người dùng</a></nav><div class="me"><span class="avatar">HN</span><div><b>Hà Nguyễn</b><small>Quản trị viên</small></div></div></aside>
+<main class="content"><header class="header"><div><h1>Máy tính &amp; thiết bị</h1><p>Theo dõi cấu hình, tình trạng và lịch bảo trì của từng máy trong các phòng máy.</p></div><div class="header-right"><span class="date" id="homNay"></span><button class="btn-dark" id="addBtn">＋ Thêm máy tính</button></div></header>
+<section class="stats"><div class="stat c-blue"><div class="stat-top"><span class="label">Tổng số máy</span><span class="icon">💻</span></div><strong id="total">0</strong><small>Trong tất cả phòng máy</small></div><div class="stat c-green"><div class="stat-top"><span class="label">Sẵn sàng</span><span class="icon">✓</span></div><strong id="ready">0</strong><small>Máy có thể sử dụng</small></div><div class="stat c-orange"><div class="stat-top"><span class="label">Đang sử dụng</span><span class="icon">◷</span></div><strong id="using">0</strong><small>Đang có người sử dụng</small></div><div class="stat c-red"><div class="stat-top"><span class="label">Hỏng / bảo trì</span><span class="icon">⚠️</span></div><strong id="problem">0</strong><small class="red">Cần được kiểm tra</small></div></section>
+<section class="machine-page"><div class="machine-toolbar"><div><h2>Máy tính theo phòng</h2><p>Danh sách máy tính, cấu hình và tình trạng hiện tại.</p></div><div class="filters"><div class="search">⌕<input id="search" placeholder="Tìm theo mã máy, CPU..."></div><select id="roomFilter"><option value="">Tất cả phòng</option></select><select id="statusFilter"><option value="">Tất cả tình trạng</option><option>Sẵn sàng</option><option>Đang sử dụng</option><option>Hỏng</option><option>Bảo trì</option></select></div></div>
+<div class="table-box"><div class="table-scroll"><table><thead><tr><th>Mã máy</th><th>Phòng</th><th>Cấu hình</th><th>Vị trí</th><th>Tình trạng</th><th>Bảo trì gần nhất</th><th>Thao tác</th></tr></thead><tbody id="machineTable"></tbody></table></div><div class="table-footer"><span id="resultCount"></span><div class="pages"><button>‹</button><button class="selected">1</button><button>2</button><button>3</button><button>›</button></div></div></div></section></main></div>
+<div class="modal-bg" id="modal"><div class="modal"><div class="modal-head"><h2 id="modalTitle">Thêm máy tính</h2><button class="close" id="closeBtn">×</button></div><form id="machineForm"><input type="hidden" id="editIndex"><div class="form-grid"><label>Mã máy *<input id="code" required></label><label>Phòng máy *<select id="room" required></select></label><label>Vị trí trong phòng<input id="position"></label><label>Tình trạng<select id="status"><option>Sẵn sàng</option><option>Đang sử dụng</option><option>Hỏng</option><option>Bảo trì</option></select></label><label>CPU<input id="cpu"></label><label>RAM<input id="ram"></label><label>Ổ cứng<input id="disk"></label><label>Card đồ họa<input id="gpu"></label><label>Hệ điều hành<input id="os" value="Windows 11 Pro"></label><label>Bảo trì gần nhất<input id="maintenance" type="date"></label><label class="full">Ghi chú<textarea id="note" rows="3"></textarea></label></div><div class="modal-actions"><button type="button" id="cancelBtn">Hủy</button><button type="submit" class="save-btn">Lưu máy tính</button></div></form></div></div><div class="toast" id="toast"></div>
+<script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/maytinh.js"></script>

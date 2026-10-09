@@ -1,0 +1,70 @@
+/* =====================================================
+   CSS DÙNG CHUNG CHO CẢ WEB - chỉ 1 người giữ file này
+   (màu sắc, menu trái, phần đầu trang, khung nội dung)
+   ===================================================== */
+:root {
+  --bg: #eef1f8;  --card: #ffffff;  --ink: #1b2236;  --mute: #6c7489;  --line: #e4e8f2;
+  --navy: #11193a;  --navy-2: #1b2552;
+  --blue: #3b5bfd;  --green: #12b886;  --orange: #f59f00;  --red: #e5384f;
+  --radius: 18px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); }
+.app { display: flex; min-height: 100vh; }
+
+/* ----- Menu trái ----- */
+.sidebar {
+  width: 264px; flex-shrink: 0; position: sticky; top: 0; height: 100vh;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: #c9d0ee; padding: 26px 16px 20px; display: flex; flex-direction: column;
+}
+.brand { display: flex; align-items: center; gap: 12px; padding: 0 10px 30px; color: #fff; }
+.logo { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; font-size: 22px;
+  background: linear-gradient(135deg, #5b7bff, #3b5bfd); box-shadow: 0 6px 16px rgba(59,91,253,.45); }
+.brand b { display: block; font-size: 20px; line-height: 1.1; }
+.brand small { color: #8f9bd6; font-weight: 600; letter-spacing: .08em; }
+#menu a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 6px;
+  border-radius: 12px; color: #c9d0ee; text-decoration: none; font-size: 16px; transition: background .2s, color .2s; }
+#menu a i { font-style: normal; font-size: 18px; width: 24px; text-align: center; }
+#menu a:hover { background: rgba(255,255,255,.08); color: #fff; }
+#menu a.active { background: var(--blue); color: #fff; font-weight: 600; box-shadow: 0 8px 18px rgba(59,91,253,.4); }
+#menu a:focus-visible { outline: 2px solid #9db0ff; outline-offset: 2px; }
+.me { margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 14px 10px 0;
+  border-top: 1px solid rgba(255,255,255,.1); color: #fff; }
+.me b { display: block; font-size: 15px; }
+.me small { color: #8f9bd6; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  font-weight: 700; font-size: 14px; background: linear-gradient(135deg, #12b886, #3b5bfd); }
+
+/* ----- Phần đầu trang ----- */
+.content { flex: 1; min-width: 0; }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 26px 36px 8px; }
+.header h1 { margin: 0; font-size: 28px; font-weight: 700; }
+.header p { margin: 6px 0 0; color: var(--mute); }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.date { background: var(--card); border: 1px solid var(--line); padding: 10px 16px;
+  border-radius: 12px; color: var(--mute); font-size: 14px; white-space: nowrap; }
+.btn-dark { background: var(--navy); color: #fff; border: 0; padding: 13px 22px; border-radius: 12px;
+  font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap;
+  box-shadow: 0 8px 18px rgba(17,25,58,.25); transition: transform .15s, background .2s; }
+.btn-dark:hover { background: var(--navy-2); transform: translateY(-1px); }
+.btn-dark:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* ----- Khung nội dung + thẻ trắng (ai cũng dùng được) ----- */
+.page { padding: 24px 36px 36px; }
+.box { background: var(--card); border-radius: var(--radius); padding: 24px; border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(27,34,54,.05); margin-bottom: 20px; }
+.box h3 { margin: 0 0 16px; font-size: 18px; }
+
+/* ----- Màn hình nhỏ ----- */
+@media (max-width: 760px) {
+  .app { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; padding: 18px 12px; }
+  .brand { padding-bottom: 16px; }
+  #menu { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; }
+  #menu a { white-space: nowrap; margin-bottom: 0; }
+  .me { display: none; }
+  .header { flex-direction: column; align-items: flex-start; padding: 22px 18px 4px; }
+  .header-right { flex-wrap: wrap; }
+  .page { padding: 18px 18px 28px; }
+}

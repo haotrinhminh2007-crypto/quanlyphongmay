@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phòng máy – LabManager</title>
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/phong-may.css">
+  
+</head>
+<body>
+  <div class="app">
+
+    <!-- Thanh menu bên trái -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo">🏢</span>
+        <div><b>LabManager</b><small>Pro</small></div>
+      </div>
+      <nav id="menu">
+        <a href="tongquan.html"><i>📊</i>Tổng quan</a>
+        <a href="lich.html"><i>📅</i>Đặt lịch ca</a>
+        <a href="phong-may.html" class="active"><i>🖥️</i>Phòng máy</a>
+        <a href="#"><i>💻</i>Máy tính</a>
+        <a href="#"><i>🔧</i>Sự cố &amp; bảo trì</a>
+        <a href="#"><i>📈</i>Báo cáo</a>
+        <a href="#"><i>👥</i>Người dùng</a>
+      </nav>
+      <div class="me">
+        <span class="avatar">HN</span>
+        <div><b>Hà Nguyễn</b><small>Quản trị viên</small></div>
+      </div>
+    </aside>
+
+    <!-- Nội dung chính -->
+    <main class="content">
+      <header class="header">
+        <div>
+          <h1>Phòng máy</h1>
+          <p>Tình trạng 4 phòng máy theo lịch thực hành hiện tại.</p>
+        </div>
+        <div class="header-right">
+          <span class="date" id="homNay">Thứ tư, 07/10/2026</span>
+
+        </div>
+      </header>
+
+      <section class="body room-body">
+        <div class="rooms" id="rooms"></div>
+        <div class="legend">
+          <span><i class="lg-red"></i>Đang có lớp thực hành</span>
+          <span><i class="lg-gray"></i>Trống</span>
+        </div>
+      </section>
+    </main>
+
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/phong-may.js"></script>
+</body>
+</html>
