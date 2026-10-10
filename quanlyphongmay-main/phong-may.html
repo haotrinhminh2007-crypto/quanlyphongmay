@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phòng máy – LabManager</title>
+  <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/taikhoan.css">
+  <link rel="stylesheet" href="css/phong-may.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Thanh menu bên trái (menu.js vẽ, taikhoan.js cập nhật khung tài khoản) -->
+    <aside class="sidebar" id="sidebar" aria-label="Điều hướng chính"></aside>
+
+    <!-- Nội dung chính -->
+    <main class="content">
+      <header class="header">
+        <div>
+          <h1>Phòng máy</h1>
+          <p>Tình trạng các phòng máy theo lịch thực hành hiện tại.</p>
+        </div>
+      </header>
+
+      <section class="body room-body">
+        <!-- Khung chứa các phòng (mỗi phòng một hàng ngang) và dấu + để thêm phòng -->
+        <div class="rooms-box">
+          <div class="rooms" id="rooms"></div>
+          <button class="them-phong" id="themPhong" title="Thêm phòng máy" aria-label="Thêm phòng máy">+</button>
+        </div>
+        <div class="legend">
+          <span><i class="lg-red"></i>Đang có lớp thực hành</span>
+          <span><i class="lg-gray"></i>Trống</span>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- THỨ TỰ QUAN TRỌNG: data.js và menu.js của nhóm -> file của lịch -> taikhoan.js -> phong-may.js -->
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/datalich.js"></script>
+  <script src="js/taikhoan.js"></script>
+  <script src="js/phong-may.js"></script>
+</body>
+</html>

@@ -10,6 +10,7 @@
 <body>
   <div class="app">
 
+    <!-- Thanh menu bên trái (giống trang Tổng quan, chỉ đổi mục active) -->
     <aside class="sidebar">
       <div class="brand">
         <span class="logo">🏢</span>
@@ -30,6 +31,7 @@
       </div>
     </aside>
 
+    <!-- Nội dung chính -->
     <main class="content">
       <header class="header">
         <div>
@@ -42,6 +44,7 @@
         </div>
       </header>
 
+      <!-- 4 thẻ thống kê -->
       <section class="stats">
         <div class="stat c-blue">
           <div class="stat-top"><span class="label">Tổng người dùng</span><span class="icon">👥</span></div>
@@ -65,6 +68,7 @@
         </div>
       </section>
 
+      <!-- Bảng người dùng -->
       <section class="box user-box">
         <div class="toolbar">
           <input type="search" id="timKiem" placeholder="🔍 Tìm theo tên, email, mã...">
@@ -111,6 +115,7 @@
     </main>
   </div>
 
+  <!-- Hộp thoại thêm / sửa -->
   <div class="modal" id="modal" hidden>
     <form class="modal-box" id="form" novalidate>
       <h3 id="tieuDeModal">Thêm người dùng</h3>
@@ -150,8 +155,7 @@
       </div>
     </form>
   </div>
-
-  <script src="js/data.js"></script>
+<script src="js/data.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/nguoidung.js"></script>
 </body>

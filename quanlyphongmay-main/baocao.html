@@ -5,32 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Báo cáo & Thống kê – LabManager</title>
-  <link rel="stylesheet" href="css/baocao.css">
   <link rel="stylesheet" href="css/chung.css">
+  <link rel="stylesheet" href="css/baocao.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
   <div class="app">
 
-
+    <!-- Thanh menu bên trái -->
     <aside class="sidebar">
       <div class="brand">
-        <span class="logo">🏢</span>
-        <div><b>LabManager</b><small>Pro</small></div>
+        <span class="logo">🖥️</span>
+        <div><b>LabManager</b><small>PRO SYSTEM</small></div>
       </div>
       <nav id="menu">
-        <a href="tongquan.html"><i>📊</i>Tổng quan</a>
-        <a href="lich.html"><i>📅</i>Đặt lịch ca</a>
-        <a href="phong-may.html"><i>🖥️</i>Phòng máy</a>
-        <a href="#"><i>💻</i>Máy tính</a>
-        <a href="suco.html"><i>🔧</i>Sự cố &amp; bảo trì</a>
-        <a href="baocao.html" class="active"><i>📈</i>Báo cáo</a>
-        <a href="#"><i>👥</i>Người dùng</a>
+        <a href="suco.html"><i>🔧</i>Sự cố & Bảo trì</a>
+        <a href="baocao.html" class="active"><i>📈</i>Báo cáo & Thống kê</a>
       </nav>
       <div class="me">
-        <span class="avatar">HN</span>
-        <div><b>Hà Nguyễn</b><small>Quản trị viên</small></div>
+        <span class="avatar">ADMIN</span>
+        <div><b>Quản trị viên</b><small>PhongMáy_IT</small></div>
       </div>
     </aside>
 
@@ -51,8 +46,8 @@
       <section class="stats">
         <div class="stat c-blue">
           <div class="stat-top"><span class="label">Ca đang hoạt động</span><span class="icon">⚡</span></div>
-          <strong>1 Ca</strong>
-          <small>Lớp đang thực hành trong phòng máy</small>
+          <strong>4 Ca</strong>
+          <small>Đang có sinh viên thực hành</small>
         </div>
         <div class="stat c-green">
           <div class="stat-top"><span class="label">Ca đã hoàn thành</span><span class="icon">⌛</span></div>
@@ -106,29 +101,36 @@
               <tbody>
                 <tr>
                   <td><b>Lab 101</b> (Chuyên Tin)</td>
-                  <td>30</td>
-                  <td><span class="badge badge-success">25</span></td>
+                  <td>40</td>
+                  <td><span class="badge badge-success">36</span></td>
                   <td><span class="badge badge-warning">3</span></td>
-                  <td><span class="badge badge-danger">2</span></td>
-                  <td><b>83.3%</b></td>
+                  <td><span class="badge badge-danger">1</span></td>
+                  <td><b>90%</b></td>
                 </tr>
                 <tr>
                   <td><b>Lab 102</b> (Đồ Họa)</td>
-                  <td>27</td>
-                  <td><span class="badge badge-success">22</span></td>
-                  <td><span class="badge badge-warning">3</span></td>
-                  <td><span class="badge badge-danger">2</span></td>
-                  <td><b>81.5%</b></td>
+                  <td>35</td>
+                  <td><span class="badge badge-success">33</span></td>
+                  <td><span class="badge badge-warning">2</span></td>
+                  <td><span class="badge badge-danger">0</span></td>
+                  <td><b>94.2%</b></td>
                 </tr>
                 <tr>
                   <td><b>Lab 201</b> (Mạng Máy Tính)</td>
                   <td>30</td>
-                  <td><span class="badge badge-success">26</span></td>
-                  <td><span class="badge badge-warning">2</span></td>
-                  <td><span class="badge badge-danger">2</span></td>
-                  <td><b>86.7%</b></td>
+                  <td><span class="badge badge-success">28</span></td>
+                  <td><span class="badge badge-warning">1</span></td>
+                  <td><span class="badge badge-danger">1</span></td>
+                  <td><b>93.3%</b></td>
                 </tr>
-
+                <tr>
+                  <td><b>Lab 305</b> (Lập Trình)</td>
+                  <td>45</td>
+                  <td><span class="badge badge-success">45</span></td>
+                  <td><span class="badge badge-warning">0</span></td>
+                  <td><span class="badge badge-danger">0</span></td>
+                  <td><b>100%</b></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -137,6 +139,8 @@
     </main>
 
   </div>
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
   <script src="js/baocao.js"></script>
 </body>
 

@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sự cố & Bảo trì – LabManager</title>
-  <link rel="stylesheet" href="css/suco.css">
   <link rel="stylesheet" href="css/chung.css">
-</head>
+  <link rel="stylesheet" href="css/suco.css">
 
 <body>
   <div class="app">
@@ -15,21 +14,16 @@
     <!-- Thanh menu bên trái -->
     <aside class="sidebar">
       <div class="brand">
-        <span class="logo">🏢</span>
-        <div><b>LabManager</b><small>Pro</small></div>
+        <span class="logo">🖥️</span>
+        <div><b>LabManager</b><small>PRO SYSTEM</small></div>
       </div>
       <nav id="menu">
-        <a href="tongquan.html"><i>📊</i>Tổng quan</a>
-        <a href="lich.html"><i>📅</i>Đặt lịch ca</a>
-        <a href="phong-may.html"><i>🖥️</i>Phòng máy</a>
-        <a href="#"><i>💻</i>Máy tính</a>
-        <a href="suco.html" class="active"><i>🔧</i>Sự cố &amp; bảo trì</a>
-        <a href="baocao.html"><i>📈</i>Báo cáo</a>
-        <a href="#"><i>👥</i>Người dùng</a>
+        <a href="suco.html" class="active"><i>🔧</i>Sự cố & Bảo trì</a>
+        <a href="baocao.html"><i>📈</i>Báo cáo & Thống kê</a>
       </nav>
       <div class="me">
-        <span class="avatar">HN</span>
-        <div><b>Hà Nguyễn</b><small>Quản trị viên</small></div>
+        <span class="avatar">ADMIN</span>
+        <div><b>Quản trị viên</b><small>PhongMáy_IT</small></div>
       </div>
     </aside>
 
@@ -50,29 +44,29 @@
       <section class="stats">
         <div class="stat c-orange">
           <div class="stat-top"><span class="label">Sự cố chờ xử lý</span><span class="icon">⏳</span></div>
-          <strong id="stat-pending">0</strong>
+          <strong id="stat-pending">3</strong>
           <small>Cần kiểm tra ngay</small>
         </div>
         <div class="stat c-blue">
           <div class="stat-top"><span class="label">Máy đang sửa chữa</span><span class="icon">🛠️</span></div>
-          <strong id="stat-fixing">0</strong>
+          <strong id="stat-fixing">2</strong>
           <small>Đang trong quá trình bảo trì</small>
         </div>
         <div class="stat c-green">
           <div class="stat-top"><span class="label">Đã phục hồi (Tháng này)</span><span class="icon">✅</span></div>
-          <strong id="stat-fixed">0</strong>
+          <strong id="stat-fixed">15</strong>
           <small>Đã sẵn sàng sử dụng</small>
         </div>
         <div class="stat c-red">
           <div class="stat-top"><span class="label">Ước tính chi phí sửa</span><span class="icon">💸</span></div>
-          <strong>3.667.000 đ</strong>
+          <strong>3.500.000 đ</strong>
           <small class="red">Bao gồm linh kiện thay thế</small>
         </div>
       </section>
 
-
+      <!-- Khung tác vụ Sự cố: Báo cáo mới & Lịch lọc -->
       <section class="grid-2col">
-
+        <!-- Form báo cáo sự cố mới -->
         <div class="box">
           <h3>📝 Báo cáo sự cố máy tính mới</h3>
           <form id="incident-form" class="form-grid">
@@ -80,9 +74,10 @@
               <label>Phòng máy:</label>
               <select id="inp-room" required>
                 <option value="">-- Chọn phòng --</option>
-                <option value="Phòng 1">Phòng 1</option>
-                <option value="Phòng 2">Phòng 2</option>
-                <option value="Phòng 3">Phòng 3</option>
+                <option value="Lab 101">Lab 101 (Tầng 1)</option>
+                <option value="Lab 102">Lab 102 (Tầng 1)</option>
+                <option value="Lab 201">Lab 201 (Tầng 2)</option>
+                <option value="Lab 305">Lab 305 (Tầng 3)</option>
               </select>
             </div>
             <div class="form-group">
@@ -138,14 +133,14 @@
           <div class="calendar-summary">
             <p>📌 <b>Ghi chú bảo trì định kỳ:</b></p>
             <ul>
-              <li>Thứ 7 tuần này: Bảo trì hệ thống mạng Phòng 3</li>
-              <li>Vệ sinh quạt gió toàn bộ Phòng 1 vào ngày 15 hàng tháng</li>
+              <li>Thứ 7 tuần này: Bảo trì hệ thống mạng Lab 201</li>
+              <li>Vệ sinh quạt gió toàn bộ Lab 101 vào ngày 15 hàng tháng</li>
             </ul>
           </div>
         </div>
       </section>
 
-
+      <!-- Bảng danh sách tổng hợp máy đang xử lý -->
       <section class="tables-section">
         <div class="box">
           <div class="box-header">
@@ -166,7 +161,7 @@
                 </tr>
               </thead>
               <tbody id="incident-table-body">
-
+                <!-- Dữ liệu JS sẽ render vào đây -->
               </tbody>
             </table>
           </div>
@@ -175,6 +170,8 @@
     </main>
 
   </div>
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
   <script src="js/suco.js"></script>
 </body>
 

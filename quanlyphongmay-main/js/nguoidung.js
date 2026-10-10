@@ -1,7 +1,9 @@
+// ===== Trang Người dùng – LabManager =====
 
 const KHOA_LUU = "labmanager_nguoidung";
-const SO_DONG = 6; 
+const SO_DONG = 6; // số dòng mỗi trang
 
+// Dữ liệu mẫu (chỉ dùng lần đầu, sau đó lưu trong localStorage)
 const DU_LIEU_MAU = [
   { ma: "ND001", ten: "Hà Nguyễn",       email: "ha.nguyen@labmanager.vn",   sdt: "0912345678", vaiTro: "Quản trị viên", trangThai: "Hoạt động" },
   { ma: "ND002", ten: "Trần Minh Tuấn",  email: "tuan.tm@school.edu.vn",     sdt: "0987654321", vaiTro: "Giảng viên",    trangThai: "Hoạt động" },
@@ -15,13 +17,15 @@ const DU_LIEU_MAU = [
 
 let dsNguoiDung = taiDuLieu();
 let trangHienTai = 1;
-let maDangSua = null; 
+let maDangSua = null; // null = đang thêm mới
 
+// ----- Lấy phần tử -----
 const $ = (id) => document.getElementById(id);
 const thanBang = $("thanBang");
 const modal = $("modal");
 const form = $("form");
 
+// ----- Lưu / tải dữ liệu -----
 function taiDuLieu() {
   try {
     const raw = localStorage.getItem(KHOA_LUU);
@@ -33,6 +37,7 @@ function luuDuLieu() {
   try { localStorage.setItem(KHOA_LUU, JSON.stringify(dsNguoiDung)); } catch (e) {}
 }
 
+// ----- Tiện ích -----
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
@@ -62,6 +67,7 @@ function layDanhSachLoc() {
   );
 }
 
+// ----- Thống kê -----
 function capNhatThongKe() {
   $("tkTong").textContent = dsNguoiDung.length;
   $("tkHoatDong").textContent = dsNguoiDung.filter((u) => u.trangThai === "Hoạt động").length;
@@ -69,6 +75,7 @@ function capNhatThongKe() {
   $("tkKhoa").textContent = dsNguoiDung.filter((u) => u.trangThai === "Bị khóa").length;
 }
 
+// ----- Vẽ bảng -----
 function veBang() {
   const ds = layDanhSachLoc();
   const tongTrang = Math.max(1, Math.ceil(ds.length / SO_DONG));
@@ -106,6 +113,7 @@ function lamMoi() {
   veBang();
 }
 
+// ----- Hộp thoại -----
 function xoaLoi() {
   ["Ten", "Email", "Sdt"].forEach((k) => {
     $("e" + k).textContent = "";
@@ -154,6 +162,7 @@ function kiemTra() {
   return ok;
 }
 
+// ----- Sự kiện -----
 $("btnThem").addEventListener("click", () => moModal(null));
 $("btnHuy").addEventListener("click", dongModal);
 modal.addEventListener("click", (e) => { if (e.target === modal) dongModal(); });
@@ -183,6 +192,7 @@ form.addEventListener("submit", (e) => {
   lamMoi();
 });
 
+// Nút trong bảng (dùng event delegation)
 thanBang.addEventListener("click", (e) => {
   const btn = e.target.closest("button[data-act]");
   if (!btn) return;
@@ -204,13 +214,16 @@ thanBang.addEventListener("click", (e) => {
   }
 });
 
+// Tìm kiếm + lọc
 ["timKiem", "locVaiTro", "locTrangThai"].forEach((id) => {
   $(id).addEventListener("input", () => { trangHienTai = 1; veBang(); });
 });
 
+// Phân trang
 $("truoc").addEventListener("click", () => { trangHienTai--; veBang(); });
 $("sau").addEventListener("click", () => { trangHienTai++; veBang(); });
 
+// Ngày hôm nay
 (function hienNgay() {
   const thu = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"];
   const d = new Date();
