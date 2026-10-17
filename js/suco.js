@@ -1,94 +1,146 @@
-let incidents = [
-  { id: 'SC01', room: 'Lab 101', pc: 'Máy 05', desc: 'Lỗi không lên nguồn', priority: 'Khẩn cấp', date: '2026-10-07', status: 'Chờ xử lý' },
-  { id: 'SC02', room: 'Lab 102', pc: 'Máy 12', desc: 'Chuột liệt chuột phải, RAM nhận 4GB', priority: 'Bình thường', date: '2026-10-06', status: 'Đang sửa chữa' },
-  { id: 'SC03', room: 'Lab 201', pc: 'Máy 01', desc: 'Mất kết nối mạng LAN', priority: 'Trung bình', date: '2026-10-05', status: 'Chờ xử lý' },
-  { id: 'SC04', room: 'Lab 305', pc: 'Máy 20', desc: 'Màn hình chớp nhấp nháy', priority: 'Trung bình', date: '2026-10-04', status: 'Đã hoàn thành' }
-];
+// ===== Trang Sự cố & Bảo trì =====
+// Ban đầu chưa có sự cố nào. Sự cố được lưu trong trình duyệt (localStorage),
+// trang Báo cáo đọc lại cùng khóa này nên hai trang dùng chung số liệu.
+const KHOA_SU_CO = 'lm_su_co_v2';
+const TT_CHO = 'Chờ xử lý';
+const TT_SUA = 'Đang sửa chữa';
+const TT_XONG = 'Đã hoàn thành';
+
+let incidents = docSuCo();
+
+function docSuCo() {
+  try {
+    const data = JSON.parse(localStorage.getItem(KHOA_SU_CO) || '[]');
+    if (Array.isArray(data)) return data;
+  } catch (e) { /* đọc lỗi thì coi như chưa có sự cố */ }
+  return [];
+}
+
+function luuSuCo() {
+  try {
+    localStorage.setItem(KHOA_SU_CO, JSON.stringify(incidents));
+    return true;
+  } catch (e) {
+    hienThongBao('Không lưu được dữ liệu. Hãy kiểm tra cài đặt trình duyệt.');
+    return false;
+  }
+}
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function hienThongBao(noiDung) {
+  const node = document.getElementById('toast');
+  if (!node) return;
+  node.textContent = noiDung;
+  node.classList.add('show');
+  clearTimeout(node._timer);
+  node._timer = setTimeout(() => node.classList.remove('show'), 2400);
+}
+
+function hienNgay() {
+  const el = document.getElementById('homNay');
+  if (!el) return;
+  const thu = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+  const d = new Date();
+  const p = n => String(n).padStart(2, '0');
+  el.textContent = `${thu[d.getDay()]}, ${p(d.getDate())}/${p(d.getMonth() + 1)}/${d.getFullYear()}`;
+}
+
+function ngayHomNay() {            // yyyy-mm-dd theo giờ máy
+  const d = new Date();
+  const p = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+function taoMaMoi() {
+  const max = incidents.reduce((m, x) => Math.max(m, parseInt(String(x.id).replace(/\D/g, ''), 10) || 0), 0);
+  return 'SC' + String(max + 1).padStart(2, '0');
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Hiển thị ngày
-  const elemHomNay = document.getElementById('homNay');
-  if (elemHomNay) {
-    const now = new Date();
-    elemHomNay.textContent = now.toLocaleDateString('vi-VN', { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' });
-  }
+  hienNgay();
+  filterIncidents();
+  updateStats();
 
-  renderIncidents(incidents);
-
-  // Xử lý gửi Form
+  // Nút Lưu ở đầu trang gửi form này
   const form = document.getElementById('incident-form');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      const newIncident = {
-        id: 'SC' + String(incidents.length + 1).padStart(2, '0'),
+      const item = {
+        id: taoMaMoi(),
         room: document.getElementById('inp-room').value,
-        pc: document.getElementById('inp-pc').value,
-        desc: document.getElementById('inp-desc').value,
-        priority: document.getElementById('inp-priority').value,
-        date: new Date().toISOString().split('T')[0],
-        status: 'Chờ xử lý'
+        pc: document.getElementById('inp-pc').value.trim(),
+        desc: document.getElementById('inp-desc').value.trim(),
+        date: ngayHomNay(),
+        status: TT_CHO
       };
-
-      incidents.unshift(newIncident);
-      renderIncidents(incidents);
+      incidents.unshift(item);
+      if (!luuSuCo()) { incidents.shift(); return; }
+      filterIncidents();
       updateStats();
       form.reset();
-      alert('Đã gửi báo cáo sự cố thành công!');
+      hienThongBao('Đã lưu sự cố ' + item.id + '.');
     });
   }
+
+  // Trang khác (hoặc tab khác) đổi dữ liệu thì cập nhật theo
+  window.addEventListener('storage', function (e) {
+    if (e.key === KHOA_SU_CO) { incidents = docSuCo(); filterIncidents(); updateStats(); }
+  });
 });
 
 function renderIncidents(data) {
   const tbody = document.getElementById('incident-table-body');
   if (!tbody) return;
 
-  tbody.innerHTML = '';
+  document.getElementById('demSuCo').textContent = incidents.length ? `(${data.length}/${incidents.length})` : '';
+
   if (data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#999;">Không có sự cố nào.</td></tr>';
+    const loi = incidents.length ? 'Không có sự cố nào khớp bộ lọc.' : 'Chưa có sự cố nào. Hãy nhập thông tin ở khung trên rồi bấm Lưu.';
+    tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><span>🛠️</span>${loi}</div></td></tr>`;
     return;
   }
 
-  data.forEach(item => {
-    let badgeClass = 'badge-pending';
-    if (item.status === 'Đang sửa chữa') badgeClass = 'badge-fixing';
-    if (item.status === 'Đã hoàn thành') badgeClass = 'badge-done';
-
-    let priorityStyle = item.priority === 'Khẩn cấp' ? 'style="color:red; font-weight:bold;"' : '';
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><b>${item.id}</b></td>
-      <td>${item.room}</td>
-      <td>${item.pc}</td>
-      <td>${item.desc}</td>
-      <td ${priorityStyle}>${item.priority}</td>
-      <td>${item.date}</td>
-      <td><span class="badge ${badgeClass}">${item.status}</span></td>
-      <td>
-        ${item.status !== 'Đã hoàn thành' ? `<button class="btn-action" onclick="changeStatus('${item.id}')">🔄 Đổi trạng thái</button>` : '---'}
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
+  tbody.innerHTML = data.map(item => {
+    const ngay = item.date ? item.date.split('-').reverse().join('/') : '—';
+    let trangThai;
+    if (item.status === TT_XONG) {
+      trangThai = `<span class="badge badge-done">${TT_XONG}</span>`;
+    } else {
+      const lop = item.status === TT_SUA ? 'badge-fixing' : 'badge-pending';
+      const tiep = item.status === TT_SUA ? TT_XONG : TT_SUA;
+      trangThai = `<button type="button" class="badge badge-btn ${lop}" title="Bấm để chuyển sang: ${tiep}" onclick="changeStatus('${escapeHtml(item.id)}')">${escapeHtml(item.status)}</button>`;
+    }
+    return `<tr>
+      <td><b>${escapeHtml(item.id)}</b></td>
+      <td>${escapeHtml(item.room)}</td>
+      <td>${escapeHtml(item.pc)}</td>
+      <td class="mota">${escapeHtml(item.desc)}</td>
+      <td>${escapeHtml(ngay)}</td>
+      <td>${trangThai}</td>
+    </tr>`;
+  }).join('');
 }
 
 function changeStatus(id) {
   const target = incidents.find(item => item.id === id);
-  if (target) {
-    if (target.status === 'Chờ xử lý') target.status = 'Đang sửa chữa';
-    else if (target.status === 'Đang sửa chữa') target.status = 'Đã hoàn thành';
-    
-    renderIncidents(incidents);
-    updateStats();
-  }
+  if (!target) return;
+  const cu = { status: target.status, doneDate: target.doneDate };
+  if (target.status === TT_CHO) target.status = TT_SUA;
+  else if (target.status === TT_SUA) { target.status = TT_XONG; target.doneDate = ngayHomNay(); }
+  if (!luuSuCo()) { target.status = cu.status; target.doneDate = cu.doneDate; return; }
+  filterIncidents();
+  updateStats();
 }
 
 function updateStats() {
-  document.getElementById('stat-pending').textContent = incidents.filter(i => i.status === 'Chờ xử lý').length;
-  document.getElementById('stat-fixing').textContent = incidents.filter(i => i.status === 'Đang sửa chữa').length;
-  document.getElementById('stat-fixed').textContent = incidents.filter(i => i.status === 'Đã hoàn thành').length + 15;
+  const thangNay = ngayHomNay().slice(0, 7);
+  document.getElementById('stat-pending').textContent = incidents.filter(i => i.status === TT_CHO).length;
+  document.getElementById('stat-fixing').textContent = incidents.filter(i => i.status === TT_SUA).length;
+  document.getElementById('stat-fixed').textContent = incidents.filter(i => i.status === TT_XONG && String(i.doneDate || i.date).slice(0, 7) === thangNay).length;
 }
 
 function filterIncidents() {
@@ -101,7 +153,3 @@ function filterIncidents() {
 
   renderIncidents(filtered);
 }
-
-function exportData() {
-  alert("Xuất dữ liệu danh sách sự cố thành công!");
-}s

@@ -13,7 +13,7 @@ var DULIEU = {
     { ten: 'Phòng máy chuyên đề', soMay: 27 }
   ],
 
-  tinhTrang: { sanSang: 42, dangDung: 30, baoTri: 7, hong: 8 },
+  tinhTrang: { sanSang: 79, dangDung: 30, baoTri: 7, hong: 8 },
 
   caHomNay: 1,
   caChoDuyet: 1,
