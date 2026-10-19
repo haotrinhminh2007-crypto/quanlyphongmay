@@ -5,16 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Đặt lịch ca – LabManager</title>
   <link rel="stylesheet" href="css/chung.css">
-  <link rel="stylesheet" href="css/taikhoan.css">
   <link rel="stylesheet" href="css/lich.css">
 </head>
 <body>
   <div class="app">
-
-    <!-- Thanh menu bên trái (menu.js vẽ, taikhoan.js cập nhật khung tài khoản) -->
     <aside class="sidebar" id="sidebar" aria-label="Điều hướng chính"></aside>
-
-    <!-- Nội dung chính -->
     <main class="content">
       <header class="header">
         <div>
@@ -22,10 +17,8 @@
           <p>Đăng kí ca thực hành cho lớp học phần theo từng phòng máy.</p>
         </div>
         <div class="header-right">
-          <!-- Dấu + : bấm vào mở form đăng kí, thông báo hiện ngay bên dưới -->
           <div class="plus-wrap">
             <button class="plus" id="plus" aria-label="Đăng kí ca mới" aria-expanded="false" aria-controls="pop">+</button>
-            <div class="toast" id="toast" role="status" aria-live="polite"></div>
             <form class="pop" id="pop" autocomplete="off">
               <h2>Đăng kí ca thực hành</h2>
               <label for="f-date">Ngày</label>
@@ -41,8 +34,6 @@
           </div>
         </div>
       </header>
-
-      <!-- Lịch tuần và lịch sử -->
       <section class="body">
         <div class="tools">
           <div class="seg" role="tablist">
@@ -62,11 +53,11 @@
     </main>
 
   </div>
-  <!-- THỨ TỰ QUAN TRỌNG: data.js và menu.js của nhóm -> file của lịch -> taikhoan.js -> lich.js -->
   <script src="js/data.js"></script>
   <script src="js/menu.js"></script>
-  <script src="js/datalich.js"></script>
   <script src="js/taikhoan.js"></script>
+  <script src="js/lichsu.js"></script>
   <script src="js/lich.js"></script>
+  <script src="js/lichform.js"></script>
 </body>
 </html>

@@ -29,13 +29,7 @@
         <a href="baocao.html" class="active"><i>📈</i>Báo cáo</a>
         <a href="nguoidung.html"><i>👥</i>Người dùng</a>
       </nav>
-      <div class="me">
-        <span class="avatar">HN</span>
-        <div><b>Hà Nguyễn</b><small>Quản trị viên</small></div>
-      </div>
     </aside>
-
-    <!-- Nội dung chính -->
     <main class="content">
       <header class="header">
         <div>
@@ -44,70 +38,66 @@
         </div>
         <div class="header-right">
           <span class="date" id="homNay">--/--/----</span>
-          <button class="btn-dark" id="btnLuu" type="button">💾 Lưu</button>
+          <button class="btn-dark" id="btnLuu" type="button">Lưu</button>
         </div>
       </header>
 
       <div class="page">
-      <!-- Thẻ thông số tổng quan (chưa có dữ liệu nên đều bằng 0) -->
-      <section class="stats">
-        <div class="stat c-blue">
-          <div class="stat-top"><span class="label">Ca đang hoạt động</span><span class="icon">⚡</span></div>
-          <strong>0 Ca</strong>
-          <small>Lớp đang thực hành trong phòng máy</small>
-        </div>
-        <div class="stat c-green">
-          <div class="stat-top"><span class="label">Ca đã hoàn thành</span><span class="icon">⌛</span></div>
-          <strong>0 Ca</strong>
-          <small>Trong tháng hiện tại</small>
-        </div>
-        <div class="stat c-orange">
-          <div class="stat-top"><span class="label">Tổng thời gian sử dụng</span><span class="icon">⏱️</span></div>
-          <strong>0 Giờ</strong>
-          <small>Trung bình 0h / ngày</small>
-        </div>
-        <div class="stat c-red">
-          <div class="stat-top"><span class="label">Chi phí sửa chữa</span><span class="icon">💰</span></div>
-          <strong>0 đ</strong>
-          <small class="red">Tổng chi cho linh kiện &amp; bảo trì</small>
-        </div>
-      </section>
-
-      <!-- Biểu đồ -->
-      <section class="charts">
-        <div class="box">
-          <h3>📊 Giờ sử dụng phòng máy theo tháng (Giờ)</h3>
-          <div class="chart-container"><canvas id="usageChart"></canvas></div>
-        </div>
-        <div class="box">
-          <h3>🍩 Tình trạng máy tính hiện tại</h3>
-          <div class="chart-container"><canvas id="statusChart"></canvas></div>
-        </div>
-      </section>
-
-      <!-- Bảng tình trạng phòng máy -->
-      <section class="box">
-        <div class="box-head">
-          <h3>🖥️ Tình trạng thiết bị theo từng phòng máy</h3>
-          <a class="link-more" href="suco.html">Xem danh sách sự cố →</a>
-        </div>
-        <div class="table-responsive">
-          <table>
-            <thead>
-              <tr>
-                <th>Tên phòng máy</th>
-                <th class="so">Tổng số máy</th>
-                <th class="so">Máy hoạt động tốt</th>
-                <th class="so">Máy đang bảo trì/sửa</th>
-                <th class="so">Máy hỏng chờ xử lý</th>
-              </tr>
-            </thead>
-            <tbody id="bangPhong"></tbody>
-            <tfoot id="tongPhong"></tfoot>
-          </table>
-        </div>
-        <p class="hint">Số liệu lấy từ trang Sự cố &amp; bảo trì (sự cố đang sửa và đang chờ xử lý) và danh sách máy ở trang Máy tính.</p>
-      </section>
+        <section class="stats">
+          <div class="stat c-blue">
+            <div class="stat-top"><span class="label">Ca đang hoạt động</span><span class="icon">⚡</span></div>
+            <strong>0 Ca</strong>
+            <small>Lớp đang thực hành trong phòng máy</small>
+          </div>
+          <div class="stat c-green">
+            <div class="stat-top"><span class="label">Ca đã hoàn thành</span><span class="icon">⌛</span></div>
+            <strong>0 Ca</strong>
+            <small>Trong tháng hiện tại</small>
+          </div>
+          <div class="stat c-orange">
+            <div class="stat-top"><span class="label">Tổng thời gian sử dụng</span><span class="icon">⏱️</span></div>
+            <strong>0 Giờ</strong>
+            <small>Trung bình 0h / ngày</small>
+          </div>
+          <div class="stat c-red">
+            <div class="stat-top"><span class="label">Chi phí sửa chữa</span><span class="icon">💰</span></div>
+            <strong>0 đ</strong>
+            <small class="red">Tổng chi cho linh kiện &amp; bảo trì</small>
+          </div>
+        </section>
+        <section class="charts">
+          <div class="box">
+            <h3>Thời gian sử dụng phòng máy</h3>
+            <div class="chart-container"><canvas id="usageChart"></canvas></div>
+          </div>
+          <div class="box">
+            <h3>Tình trạng máy tính hiện tại</h3>
+            <div class="chart-container"><canvas id="statusChart"></canvas></div>
+          </div>
+        </section>
+        <section class="box">
+          <div class="box-head">
+            <h3>🖥️ Tình trạng thiết bị theo từng phòng máy</h3>
+            <a class="link-more" href="suco.html">Xem danh sách sự cố →</a>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tên phòng máy</th>
+                  <th class="so">Tổng số máy</th>
+                  <th class="so">Máy hoạt động tốt</th>
+                  <th class="so">Máy đang bảo trì/sửa</th>
+                  <th class="so">Máy hỏng chờ xử lý</th>
+                </tr>
+              </thead>
+              <tbody id="bangPhong"></tbody>
+              <tfoot id="tongPhong"></tfoot>
+            </table>
+          </div>
+          <p class="hint">Số liệu lấy từ trang Sự cố &amp; bảo trì (sự cố đang sửa và đang chờ xử lý) và danh sách máy ở
+            trang Máy tính.</p>
+        </section>
       </div>
     </main>
 
@@ -116,15 +106,10 @@
 
   <script src="js/baocao.js"></script>
   <script>
-    // Nếu chưa ai được chọn thì dùng tên mặc định (giống trang Đặt lịch ca và Phòng máy)
     window.DULIEU = window.DULIEU || {nguoiDung: 'Hà Nguyễn'};
   </script>
   <script src="js/taikhoan.js"></script>
   <script>
-    // LIÊN KẾT ĐĂNG NHẬP -> KHUNG TÀI KHOẢN
-    // Trang đăng nhập lưu người vừa đăng nhập ở 'phongMayDemoSession'. Đoạn này đổi nó thành
-    // "người đang dùng web" để khung tài khoản hiện đúng tên và chức vụ lấy từ trang Người dùng.
-    // Chỉ chạy 1 lần cho mỗi lần đăng nhập, nên sau đó bấm chuyển tài khoản vẫn giữ nguyên.
     (function () {
       try {
         var phien = JSON.parse(localStorage.getItem('phongMayDemoSession') || 'null');
@@ -139,13 +124,13 @@
         }
         if (tim === null) {tim = timNguoiTheoTen(phien.name);}
 
-        // Người mới đăng ký mà chưa có trong trang Người dùng thì tạm để chức vụ Sinh viên
+
         var nguoi = tim ? {ma: tim.ma, ten: tim.ten, vaiTro: tim.vaiTro}
           : {ten: phien.name, vaiTro: 'Sinh viên'};
         localStorage.setItem('labmanager_current_user', JSON.stringify(nguoi));
         localStorage.setItem('labmanager_phien_da_ap_dung', phien.loggedInAt);
         capNhatGiaoDien();
-      } catch (e) { /* lỗi đọc dữ liệu thì bỏ qua, khung tài khoản vẫn dùng bình thường */}
+      } catch (e) { }
     })();
   </script>
 </body>

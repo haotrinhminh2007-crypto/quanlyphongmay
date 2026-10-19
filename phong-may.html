@@ -5,16 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phòng máy – LabManager</title>
   <link rel="stylesheet" href="css/chung.css">
-  <link rel="stylesheet" href="css/taikhoan-lich.css">
   <link rel="stylesheet" href="css/phong-may.css">
 </head>
 <body>
   <div class="app">
-
-    <!-- Thanh menu bên trái (menu.js vẽ, taikhoan-lich.js cập nhật tên người đăng nhập) -->
-    <aside class="sidebar" id="sidebar"></aside>
-
-    <!-- Nội dung chính -->
     <main class="content">
       <header class="header">
         <div>
@@ -22,9 +16,7 @@
           <p>Tình trạng 4 phòng máy hiện tại.</p>
         </div>
       </header>
-
       <section class="page">
-        <!-- Khung trắng chứa 4 phòng, mỗi phòng một hàng ngang (vẽ bằng phong-may.js) -->
         <div class="box">
           <div class="rooms" id="rooms"></div>
           <div class="legend">
@@ -36,11 +28,9 @@
     </main>
 
   </div>
-
-  <!-- THỨ TỰ QUAN TRỌNG: data.js, menu.js (của nhóm) -> taikhoan-lich.js -> phong-may.js -->
   <script src="js/data.js"></script>
   <script src="js/menu.js"></script>
-  <script src="js/taikhoan-lich.js"></script>
+  <script src="js/lich.js"></script>
   <script src="js/phong-may.js"></script>
 </body>
 </html>

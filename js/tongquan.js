@@ -1,4 +1,4 @@
-// JS RIÊNG của trang Tổng quan (đọc số liệu từ data.js)
+
 var D = DULIEU;
 var tt = D.tinhTrang;
 var tongMay = D.phongMay.reduce(function (t, ph) { return t + ph.soMay; }, 0);

@@ -1,8 +1,3 @@
-// =====================================================
-//  DỮ LIỆU DÙNG CHUNG CHO CẢ NHÓM
-//  Thêm dữ liệu mới thì THÊM vào cuối, KHÔNG đổi tên các mục đã có
-//  (vì trang của người khác đang đọc chúng).
-// =====================================================
 var DULIEU = {
 
   nguoiDung: 'Tổng quan',
@@ -10,13 +5,14 @@ var DULIEU = {
   phongMay: [
     { ten: 'Phòng thực hành 1',   soMay: 30 },
     { ten: 'Phòng thực hành 2',   soMay: 30 },
-    { ten: 'Phòng máy chuyên đề', soMay: 27 }
+    { ten: 'Phòng thực hành 3',   soMay: 30 },
+    { ten: 'Phòng thực hành 4',   soMay: 30 }
   ],
 
-  tinhTrang: { sanSang: 79, dangDung: 30, baoTri: 7, hong: 8 },
+  tinhTrang: { sanSang: 120, dangDung: 0, baoTri: 0, hong: 0 },
 
-  caHomNay: 1,
-  caChoDuyet: 1,
-  suCoChuaXuLy: 4,
-  chiPhiSuaChua: 1500000
+  caHomNay: 0,
+  caChoDuyet: 0,
+  suCoChuaXuLy: 0,
+  chiPhiSuaChua: 0
 };

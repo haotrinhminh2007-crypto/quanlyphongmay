@@ -1,7 +1,4 @@
-// =====================================================
-//  MENU + NGÀY HÔM NAY - dùng chung, chỉ 1 người giữ file này
-//  Muốn thêm/đổi tên mục menu: sửa DANH SÁCH bên dưới, mọi trang tự cập nhật
-// =====================================================
+
 var MENU = [
   { ten: 'Tổng quan',       icon: '📊', file: 'tongquan.html' },
   { ten: 'Đặt lịch ca',     icon: '📅', file: 'lich.html' },

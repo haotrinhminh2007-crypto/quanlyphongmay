@@ -12,8 +12,6 @@
 
 <body>
   <div class="app">
-
-    <!-- Thanh menu bên trái -->
     <aside class="sidebar" id="sidebar" aria-label="Điều hướng chính">
       <div class="brand">
         <span class="logo">🏢</span>
@@ -28,12 +26,7 @@
         <a href="baocao.html"><i>📈</i>Báo cáo</a>
         <a href="nguoidung.html"><i>👥</i>Người dùng</a>
       </nav>
-      <div class="me"><span class="avatar">HN</span>
-        <div><b>Hà Nguyễn</b><small>Quản trị viên</small></div>
-      </div>
     </aside>
-
-    <!-- Nội dung chính -->
     <main class="content">
       <header class="header">
         <div>
@@ -42,86 +35,92 @@
         </div>
         <div class="header-right">
           <span class="date" id="homNay">--/--/----</span>
-          <button class="btn-dark" type="submit" form="incident-form">💾 Lưu</button>
+          <button class="btn-dark" type="submit" form="incident-form">Lưu</button>
         </div>
       </header>
 
       <div class="page">
-      <!-- Thẻ tóm tắt nhanh sự cố -->
-      <section class="stats">
-        <div class="stat c-orange">
-          <div class="stat-top"><span class="label">Sự cố chờ xử lý</span><span class="icon">⏳</span></div>
-          <strong id="stat-pending">0</strong>
-          <small>Cần kiểm tra ngay</small>
-        </div>
-        <div class="stat c-blue">
-          <div class="stat-top"><span class="label">Máy đang sửa chữa</span><span class="icon">🛠️</span></div>
-          <strong id="stat-fixing">0</strong>
-          <small>Đang trong quá trình bảo trì</small>
-        </div>
-        <div class="stat c-green">
-          <div class="stat-top"><span class="label">Đã phục hồi (Tháng này)</span><span class="icon">✅</span></div>
-          <strong id="stat-fixed">0</strong>
-          <small>Đã sẵn sàng sử dụng</small>
-        </div>
-        <div class="stat c-red">
-          <div class="stat-top"><span class="label">Ước tính chi phí sửa</span><span class="icon">💸</span></div>
-          <strong id="stat-cost">0 đ</strong>
-          <small class="red">Chưa có chi phí nào</small>
-        </div>
-      </section>
-
-      <!-- Form báo cáo sự cố mới -->
-      <section class="box">
-        <div class="box-head"><h3>📝 Báo cáo sự cố mới</h3></div>
-        <form id="incident-form" class="form-row">
-          <div class="form-group">
-            <label for="inp-room">Phòng máy</label>
-            <select id="inp-room" required>
-              <option value="">-- Chọn phòng --</option>
-              <option value="Phòng 1">Phòng 1</option>
-              <option value="Phòng 2">Phòng 2</option>
-              <option value="Phòng 3">Phòng 3</option>
-              <option value="Phòng 4">Phòng 4</option>
-            </select>
+        <section class="stats">
+          <div class="stat c-orange">
+            <div class="stat-top"><span class="label">Sự cố chờ xử lý</span><span class="icon">⏳</span></div>
+            <strong id="stat-pending">0</strong>
+            <small>Cần kiểm tra ngay</small>
           </div>
-          <div class="form-group">
-            <label for="inp-pc">Tên máy</label>
-            <input type="text" id="inp-pc" placeholder="Ví dụ: Máy 05, PC-12" maxlength="40" required>
+          <div class="stat c-blue">
+            <div class="stat-top"><span class="label">Máy đang sửa chữa</span><span class="icon">🛠️</span></div>
+            <strong id="stat-fixing">0</strong>
+            <small>Đang trong quá trình bảo trì</small>
           </div>
-          <div class="form-group">
-            <label for="inp-desc">Mô tả lỗi</label>
-            <textarea id="inp-desc" rows="2" maxlength="500" placeholder="Mô tả hiện tượng lỗi (ví dụ: máy không bật được nguồn, màn hình xanh...)" required></textarea>
+          <div class="stat c-green">
+            <div class="stat-top"><span class="label">Đã phục hồi (Tháng này)</span><span class="icon">✅</span></div>
+            <strong id="stat-fixed">0</strong>
+            <small>Đã sẵn sàng sử dụng</small>
           </div>
-        </form>
-        <p class="hint">Điền đủ 3 ô rồi bấm <b>💾 Lưu</b> ở góc phải phía trên để lưu sự cố.</p>
-      </section>
-
-      <!-- Danh sách sự cố -->
-      <section class="box">
-        <div class="box-head">
-          <h3>📋 Danh sách sự cố <small id="demSuCo"></small></h3>
-          <div class="toolbar-filters">
-            <input type="date" id="filter-date" onchange="filterIncidents()" aria-label="Lọc theo ngày báo">
-            <select id="filter-status" onchange="filterIncidents()" aria-label="Lọc theo trạng thái">
-              <option value="ALL">Tất cả trạng thái</option>
-              <option value="Chờ xử lý">Chờ xử lý</option>
-              <option value="Đang sửa chữa">Đang sửa chữa</option>
-              <option value="Đã hoàn thành">Đã hoàn thành</option>
-            </select>
-            <a class="link-more" href="baocao.html">Xem báo cáo →</a>
+          <div class="stat c-red">
+            <div class="stat-top"><span class="label">Ước tính chi phí sửa</span><span class="icon">💸</span></div>
+            <strong id="stat-cost">0 đ</strong>
+            <small class="red">Chưa có chi phí nào</small>
           </div>
-        </div>
-        <div class="table-responsive">
-          <table>
-            <thead>
-              <tr><th>Mã SC</th><th>Phòng máy</th><th>Tên máy</th><th>Mô tả lỗi</th><th>Ngày báo</th><th>Trạng thái</th></tr>
-            </thead>
-            <tbody id="incident-table-body"></tbody>
-          </table>
-        </div>
-        <p class="hint">Bấm vào nhãn trạng thái để chuyển: Chờ xử lý → Đang sửa chữa → Đã hoàn thành.</p>
-      </section>
+        </section>
+        <section class="box">
+          <div class="box-head">
+            <h3>📝 Báo cáo sự cố mới</h3>
+          </div>
+          <form id="incident-form" class="form-row">
+            <div class="form-group">
+              <label for="inp-room">Phòng máy</label>
+              <select id="inp-room" required>
+                <option value="">-- Chọn phòng --</option>
+                <option value="Phòng 1">Phòng 1</option>
+                <option value="Phòng 2">Phòng 2</option>
+                <option value="Phòng 3">Phòng 3</option>
+                <option value="Phòng 4">Phòng 4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inp-pc">Tên máy</label>
+              <input type="text" id="inp-pc" placeholder="Ví dụ: Máy 05, PC-12" maxlength="40" required>
+            </div>
+            <div class="form-group">
+              <label for="inp-desc">Mô tả lỗi</label>
+              <textarea id="inp-desc" rows="2" maxlength="500"
+                placeholder="Mô tả hiện tượng lỗi (ví dụ: máy không bật được nguồn, màn hình xanh...)"
+                required></textarea>
+            </div>
+          </form>
+          <p class="hint">Điền đủ 3 ô rồi bấm <b>💾 Lưu</b> ở góc phải phía trên để lưu sự cố.</p>
+        </section>
+        <section class="box">
+          <div class="box-head">
+            <h3>📋 Danh sách sự cố <small id="demSuCo"></small></h3>
+            <div class="toolbar-filters">
+              <input type="date" id="filter-date" onchange="filterIncidents()" aria-label="Lọc theo ngày báo">
+              <select id="filter-status" onchange="filterIncidents()" aria-label="Lọc theo trạng thái">
+                <option value="ALL">Tất cả trạng thái</option>
+                <option value="Chờ xử lý">Chờ xử lý</option>
+                <option value="Đang sửa chữa">Đang sửa chữa</option>
+                <option value="Đã hoàn thành">Đã hoàn thành</option>
+              </select>
+              <a class="link-more" href="baocao.html">Xem báo cáo →</a>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã SC</th>
+                  <th>Phòng máy</th>
+                  <th>Tên máy</th>
+                  <th>Mô tả lỗi</th>
+                  <th>Ngày báo</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody id="incident-table-body"></tbody>
+            </table>
+          </div>
+          <p class="hint">Bấm vào nhãn trạng thái để chuyển: Chờ xử lý → Đang sửa chữa → Đã hoàn thành.</p>
+        </section>
       </div>
     </main>
 
@@ -130,15 +129,10 @@
 
   <script src="js/suco.js"></script>
   <script>
-    // Nếu chưa ai được chọn thì dùng tên mặc định (giống trang Đặt lịch ca và Phòng máy)
     window.DULIEU = window.DULIEU || {nguoiDung: 'Hà Nguyễn'};
   </script>
   <script src="js/taikhoan.js"></script>
   <script>
-    // LIÊN KẾT ĐĂNG NHẬP -> KHUNG TÀI KHOẢN
-    // Trang đăng nhập lưu người vừa đăng nhập ở 'phongMayDemoSession'. Đoạn này đổi nó thành
-    // "người đang dùng web" để khung tài khoản hiện đúng tên và chức vụ lấy từ trang Người dùng.
-    // Chỉ chạy 1 lần cho mỗi lần đăng nhập, nên sau đó bấm chuyển tài khoản vẫn giữ nguyên.
     (function () {
       try {
         var phien = JSON.parse(localStorage.getItem('phongMayDemoSession') || 'null');
@@ -152,14 +146,12 @@
           if (danhSach[i].email && danhSach[i].email.toLowerCase() === email) {tim = danhSach[i];}
         }
         if (tim === null) {tim = timNguoiTheoTen(phien.name);}
-
-        // Người mới đăng ký mà chưa có trong trang Người dùng thì tạm để chức vụ Sinh viên
         var nguoi = tim ? {ma: tim.ma, ten: tim.ten, vaiTro: tim.vaiTro}
           : {ten: phien.name, vaiTro: 'Sinh viên'};
         localStorage.setItem('labmanager_current_user', JSON.stringify(nguoi));
         localStorage.setItem('labmanager_phien_da_ap_dung', phien.loggedInAt);
         capNhatGiaoDien();
-      } catch (e) { /* lỗi đọc dữ liệu thì bỏ qua, khung tài khoản vẫn dùng bình thường */}
+      } catch (e) { }
     })();
   </script>
 </body>
