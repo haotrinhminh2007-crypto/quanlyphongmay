@@ -5,7 +5,7 @@
 // =====================================================
 var DULIEU = {
 
-  nguoiDung: 'Hà Nguyễn',
+  nguoiDung: 'Tổng quan',
 
   phongMay: [
     { ten: 'Phòng thực hành 1',   soMay: 30 },
