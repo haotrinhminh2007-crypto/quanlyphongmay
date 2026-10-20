@@ -1,6 +1,4 @@
-// ===== Trang Sự cố & Bảo trì =====
-// Ban đầu chưa có sự cố nào. Sự cố được lưu trong trình duyệt (localStorage),
-// trang Báo cáo đọc lại cùng khóa này nên hai trang dùng chung số liệu.
+
 const KHOA_SU_CO = 'lm_su_co_v2';
 const TT_CHO = 'Chờ xử lý';
 const TT_SUA = 'Đang sửa chữa';
@@ -12,7 +10,7 @@ function docSuCo() {
   try {
     const data = JSON.parse(localStorage.getItem(KHOA_SU_CO) || '[]');
     if (Array.isArray(data)) return data;
-  } catch (e) { /* đọc lỗi thì coi như chưa có sự cố */ }
+  } catch (e) {  }
   return [];
 }
 
@@ -48,7 +46,7 @@ function hienNgay() {
   el.textContent = `${thu[d.getDay()]}, ${p(d.getDate())}/${p(d.getMonth() + 1)}/${d.getFullYear()}`;
 }
 
-function ngayHomNay() {            // yyyy-mm-dd theo giờ máy
+function ngayHomNay() {            
   const d = new Date();
   const p = n => String(n).padStart(2, '0');
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
@@ -64,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
   filterIncidents();
   updateStats();
 
-  // Nút Lưu ở đầu trang gửi form này
+  
   const form = document.getElementById('incident-form');
   if (form) {
     form.addEventListener('submit', function (e) {
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Trang khác (hoặc tab khác) đổi dữ liệu thì cập nhật theo
+  
   window.addEventListener('storage', function (e) {
     if (e.key === KHOA_SU_CO) { incidents = docSuCo(); filterIncidents(); updateStats(); }
   });

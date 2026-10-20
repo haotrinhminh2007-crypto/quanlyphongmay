@@ -389,7 +389,7 @@ table.cal {
   background: var(--navy-2);
 }
 
-/*Màn hình nhỏ*/
+
 @media (max-width: 760px) {
   .body {
     padding: 14px 18px 28px;

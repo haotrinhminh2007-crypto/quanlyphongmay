@@ -1,4 +1,4 @@
-// Đăng ký và xóa ca trên trang lịch.
+
 var nutCong = document.getElementById('plus');
 var form = document.getElementById('pop');
 var nutGui = form.querySelector('.submit');

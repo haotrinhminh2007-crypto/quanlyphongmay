@@ -26,7 +26,7 @@ function taiDuLieu() {
   try {
     const raw = localStorage.getItem(KHOA_LUU);
     if (raw) return JSON.parse(raw);
-  } catch (e) { /* bỏ qua, dùng dữ liệu mẫu */ }
+  } catch (e) {  }
   return DU_LIEU_MAU.slice();
 }
 function luuDuLieu() {

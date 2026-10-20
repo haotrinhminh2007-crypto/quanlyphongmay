@@ -1,7 +1,4 @@
-/* Khung tài khoản ở thanh menu (dùng chung cho trang Đặt lịch ca và Phòng máy)
-   Phải nạp sau css/chung.css vì dùng lại .me và .avatar của file đó. */
 
-/* ===== Khung tài khoản: bấm vào để đổi người dùng ===== */
 .sidebar .me {
   cursor: pointer;
   border-radius: 12px;
@@ -34,7 +31,7 @@
   font-size: 14px;
 }
 
-/* ===== Màu avatar theo chức vụ (cùng tông với nhãn ở trang Người dùng) ===== */
+
 .vt-admin .avatar {
   background: linear-gradient(135deg, #8b5cf6, #6d28d9);
 }
@@ -51,7 +48,7 @@
   background: linear-gradient(135deg, #94a3b8, #475569);
 }
 
-/* ===== Hộp danh sách chọn người dùng (nổi lên phía trên khung tài khoản) ===== */
+
 .chon-nguoi-dung {
   position: absolute;
   left: 12px;

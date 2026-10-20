@@ -9,7 +9,7 @@ const dataDefault=roomNames.flatMap((room,ri)=>Array.from({length:30},(_,j)=>{
   return {code:`A${ri+1}-101-${String(n).padStart(2,'0')}`,room,cpu:cpuList[idx],ram:ramList[idx],disk:diskList[idx],gpu:gpuList[idx],position:`Dãy ${Math.floor(j/10)+1} - Số ${(j%10)+1}`,status,date:'2023-08-15'};
 }));
 let machines=JSON.parse(localStorage.getItem('lm_machines_4rooms_v1')||'null')||dataDefault;
-// Khởi tạo dữ liệu mẫu mới: 4 phòng thực hành, mỗi phòng 30 máy (tổng 120 máy).
+
 if(!localStorage.getItem('lm_machines_4rooms_v1')) localStorage.setItem('lm_machines_4rooms_v1',JSON.stringify(machines));
 const $=id=>document.getElementById(id);
 function badge(s){let c=s==='Sẵn sàng'?'ready':s==='Đang sử dụng'?'using':s==='Hỏng'?'broken':'maint';return `<span class="badge ${c}">${s}</span>`}

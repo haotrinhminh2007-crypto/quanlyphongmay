@@ -1,10 +1,9 @@
-// Trang đăng nhập/đăng ký mẫu chạy ở phía trình duyệt.
-// Lưu ý: localStorage chỉ phù hợp demo, không thay thế xác thực ở máy chủ.
+
 
 const STORAGE_KEY = "phongMayDemoUsers";
 const SESSION_KEY = "phongMayDemoSession";
 
-// Đổi đường dẫn này nếu trang tổng quan nằm ở vị trí khác.
+
 const DASHBOARD_URL = "tongquan.html";
 
 function getUsers() {
@@ -88,7 +87,7 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
     return;
   }
 
-  // Chỉ là trạng thái đăng nhập mẫu trên trình duyệt.
+
   localStorage.setItem(SESSION_KEY, JSON.stringify({
     email: user.email,
     name: user.name,

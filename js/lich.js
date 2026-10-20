@@ -43,7 +43,7 @@ function luuDuLieuTam() {
   try {
     sessionStorage.setItem(KHOA_LICH_TAM, JSON.stringify(duLieu));
   } catch (e) {
-    // Trang vẫn chạy với dữ liệu trong bộ nhớ nếu trình duyệt chặn sessionStorage.
+   
   }
 }
 

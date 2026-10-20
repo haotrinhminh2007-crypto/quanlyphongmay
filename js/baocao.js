@@ -1,6 +1,4 @@
-// ===== Trang Báo cáo =====
-// Số liệu theo phòng lấy từ trang Sự cố (khóa lm_su_co_v2) và danh sách máy ở trang Máy tính (khóa lm_machines).
-// Chưa có gì thì mọi chỉ số đều bằng 0. Ca và giờ sử dụng chưa nối với trang Đặt lịch ca nên để 0.
+
 const KHOA_SU_CO = 'lm_su_co_v2';
 const KHOA_MAY = 'lm_machines';
 const KHOA_BAO_CAO = 'lm_bao_cao_da_luu';
@@ -38,7 +36,6 @@ function docDanhSach(khoa) {
   } catch (e) { return []; }
 }
 
-// Tính số liệu từng phòng từ dữ liệu của trang Sự cố và Máy tính
 function tinhPhongMay() {
   const suCo = docDanhSach(KHOA_SU_CO);
   const may = docDanhSach(KHOA_MAY);
@@ -66,19 +63,19 @@ function veBangPhong(phong) {
     </tr>`;
 }
 
-// ----- Biểu đồ -----
+
 function nhanSauThangGanNhat() {
   const now = new Date();
   const nhan = [];
   for (let i = 5; i >= 0; i--) nhan.push('Tháng ' + (new Date(now.getFullYear(), now.getMonth() - i, 1).getMonth() + 1));
   return nhan;
 }
-const GIO_THEO_THANG = { nhan: nhanSauThangGanNhat(), gio: [0, 0, 0, 0, 0, 0] };   // chưa có dữ liệu
+const GIO_THEO_THANG = { nhan: nhanSauThangGanNhat(), gio: [0, 0, 0, 0, 0, 0] };   
 
 function duLieuTinhTrang(phong) {
   const cong = k => phong.reduce((t, p) => t + p[k], 0);
   const so = [cong('tot'), cong('dangSua'), cong('hong')];
-  if (so.every(v => v === 0)) {   // chưa có gì: vẽ vòng xám
+  if (so.every(v => v === 0)) {   
     return { trong: true, labels: ['Chưa có dữ liệu'], data: [1], mau: ['#e5e7eb'] };
   }
   return {
@@ -142,7 +139,6 @@ function capNhatTatCa() {
   capNhatBieuDoTinhTrang(phong);
 }
 
-// ----- Lưu báo cáo -----
 function chupBaoCao() {
   return {
     luuLuc: new Date().toISOString(),
@@ -182,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
   veBieuDo(phong);
   const nut = document.getElementById('btnLuu');
   if (nut) nut.addEventListener('click', luuBaoCao);
-  // Trang Sự cố / Máy tính đổi dữ liệu (ở tab khác) thì báo cáo cập nhật theo
+  
   window.addEventListener('storage', function (e) {
     if (e.key === KHOA_SU_CO || e.key === KHOA_MAY) capNhatTatCa();
   });
