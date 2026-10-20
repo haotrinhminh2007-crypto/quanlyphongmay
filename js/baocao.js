@@ -1,4 +1,3 @@
-
 const KHOA_SU_CO = 'lm_su_co_v2';
 const KHOA_MAY = 'lm_machines';
 const KHOA_BAO_CAO = 'lm_bao_cao_da_luu';
@@ -40,12 +39,19 @@ function tinhPhongMay() {
   const suCo = docDanhSach(KHOA_SU_CO);
   const may = docDanhSach(KHOA_MAY);
   return DANH_SACH_PHONG.map(ten => {
-    const so = ten.match(/\d+/)[0];
-    const soMay = may.filter(m => typeof m.room === 'string' && (m.room.match(/(\d+)\s*$/) || [])[1] === so).length;
+    const soMatch = ten.match(/\d+/);
+    const so = soMatch ? soMatch[0] : '';
+    const soMayTuTrangMay = may.filter(m => {
+      if (!m || !m.room) return false;
+      const mSo = String(m.room).match(/\d+/);
+      return mSo && mSo[0] === so;
+    }).length;
+    const tongSoMayMacDinh = 30;
+    const tong = Math.max(soMayTuTrangMay, tongSoMayMacDinh);
     const dangSua = suCo.filter(s => s.room === ten && s.status === 'Đang sửa chữa').length;
     const hong = suCo.filter(s => s.room === ten && s.status === 'Chờ xử lý').length;
-    const tong = Math.max(soMay, dangSua + hong);
-    return { ten, tong, tot: tong - dangSua - hong, dangSua, hong };
+    const tot = Math.max(0, tong - dangSua - hong);
+    return { ten, tong, tot, dangSua, hong };
   });
 }
 
@@ -62,7 +68,6 @@ function veBangPhong(phong) {
       <td>Tổng cộng</td><td class="so">${tong('tong')}</td><td class="so">${tong('tot')}</td><td class="so">${tong('dangSua')}</td><td class="so">${tong('hong')}</td>
     </tr>`;
 }
-
 
 function nhanSauThangGanNhat() {
   const now = new Date();
@@ -183,11 +188,3 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === KHOA_SU_CO || e.key === KHOA_MAY) capNhatTatCa();
   });
 });
-function tinhPhongMay() {
-  return [
-    { ten: 'Phòng 1', tong: 30, tot: 30, dangSua: 0, hong: 0 },
-    { ten: 'Phòng 2', tong: 30, tot: 30, dangSua: 0, hong: 0 },
-    { ten: 'Phòng 3', tong: 30, tot: 30, dangSua: 0, hong: 0 },
-    { ten: 'Phòng 4', tong: 30, tot: 30, dangSua: 0, hong: 0 }
-  ];
-}
