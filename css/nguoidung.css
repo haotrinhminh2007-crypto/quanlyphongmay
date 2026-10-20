@@ -136,3 +136,17 @@
   .row2 { grid-template-columns: 1fr; }
   .paging { flex-direction: column; gap: 10px; }
 }
+.btn-logout {
+  margin-top: 8px; width: 100%; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 8px; background: transparent; color: inherit; cursor: pointer; font: inherit;
+}
+.btn-logout:hover { background: rgba(255, 80, 80, .2); }
+.header-right .btn-light { 
+  padding: 9px 14px; 
+  border-radius: 8px; 
+  border: 1px solid #d0d5dd; 
+  background: #fff; 
+  cursor: pointer; }
+.header-right .btn-light:hover { 
+  background: #fee2e2; 
+  border-color: #f87171; }

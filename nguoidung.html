@@ -28,6 +28,7 @@
       <div class="me">
         <span class="avatar">HN</span>
         <div><b>Tổng quan</b><small>Quản trị viên</small></div>
+        <button type="button" id="btnDangXuat" class="btn-logout" title="Đăng xuất">⏻ Đăng xuất</button>
       </div>
     </aside>
 
@@ -40,6 +41,7 @@
         <div class="header-right">
           <span class="date" id="homNay"></span>
           <button class="btn-dark" id="btnThem">+ Thêm người dùng</button>
+          <button class="btn-light" id="btnDangXuatTren" type="button">⏻ Đăng xuất</button>
         </div>
       </header>
 
@@ -151,7 +153,26 @@
       </div>
     </form>
   </div>
-<script src="js/data.js"></script>
+
+  <script src="js/data.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/nguoidung.js"></script>
+  <script>
+    (function () {
+      function dangXuat() {
+        if (!confirm('Bạn có chắc muốn đăng xuất?')) { return; }
+        try {
+          localStorage.removeItem('phongMayDemoSession');
+          localStorage.removeItem('labmanager_current_user');
+          localStorage.removeItem('labmanager_phien_da_ap_dung');
+        } catch (e) { }
+        window.location.href = 'dangnhap.html';
+      }
+      ['btnDangXuat', 'btnDangXuatTren'].forEach(function (id) {
+        var nut = document.getElementById(id);
+        if (nut) { nut.addEventListener('click', dangXuat); }
+      });
+    })();
+  </script>
+</body>
 </html>
