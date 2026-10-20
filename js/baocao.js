@@ -187,3 +187,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === KHOA_SU_CO || e.key === KHOA_MAY) capNhatTatCa();
   });
 });
+function tinhPhongMay() {
+  return [
+    { ten: 'Phòng 1', tong: 30, tot: 30, dangSua: 0, hong: 0 },
+    { ten: 'Phòng 2', tong: 30, tot: 30, dangSua: 0, hong: 0 },
+    { ten: 'Phòng 3', tong: 30, tot: 30, dangSua: 0, hong: 0 },
+    { ten: 'Phòng 4', tong: 30, tot: 30, dangSua: 0, hong: 0 }
+  ];
+}
